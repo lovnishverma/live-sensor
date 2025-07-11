@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Sensor Data</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      display: inline-block;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .value {
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🌡️ Live DHT11 Sensor Data</h1>
+    <p><strong>Sensor:</strong> <span id="sensorid">--</span></p>
+    <p><strong>Sample Name:</strong> <span id="samplename">--</span></p>
+    <p><strong>Temperature:</strong> <span id="temp" class="value">--</span> °C</p>
+    <p><strong>Humidity:</strong> <span id="hum" class="value">--</span> %</p>
+  </div>
+
+  <script>
+    const url = "https://fir-demo-project.firebaseio.com/sensordata.json";
+
+    async function updateData() {
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        document.getElementById("sensorid").textContent = data.sensorid || "--";
+        document.getElementById("samplename").textContent = data.samplename || "--";
+        document.getElementById("temp").textContent = data.temp?.toFixed(2) || "--";
+        document.getElementById("hum").textContent = data.hum?.toFixed(2) || "--";
+      } catch (err) {
+        console.error("Error fetching Firebase data:", err);
+      }
+    }
+
+    // Initial call + auto refresh every 5 seconds
+    updateData();
+    setInterval(updateData, 5000);
+  </script>
+</body>
+</html>
