@@ -1,4 +1,3 @@
-
 # 🌡️ Live DHT11 Sensor Data Dashboard
 
 This project demonstrates how to read temperature and humidity from a **DHT11 sensor** using an **ESP8266** microcontroller, upload the data to **Firebase Realtime Database**, and display it in real-time on a web interface hosted via **GitHub Pages**.
@@ -166,10 +165,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 📝 To Use:
+## 📝 Credits:
 
-- Save this content as `README.md`
-- Put it in the root of your GitHub repository
-- Push the file to GitHub to show the README on your project page
-
-
+- Lovnish Verma (princelv84@gmail.com)
